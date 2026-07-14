@@ -62,4 +62,5 @@ export interface AppSettings {
   contractTerms: string; // customized terms of service
   incentiveTitle: string; // "Free first delivery" or "10% Off"
   incentiveDescription: string;
+  ownerImage?: string; // base64 or URL for the owner's profile picture
 }

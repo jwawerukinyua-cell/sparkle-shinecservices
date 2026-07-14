@@ -13,6 +13,12 @@ import {
   ChevronDown, ChevronUp, Share2, Copy
 } from "lucide-react";
 
+import maryChandelier from "../assets/images/mary_chandelier_cleaning_1784018216205.jpg";
+import maryPortrait from "../assets/images/mary_professional_portait.jpg";
+import serviceLaundry from "../assets/images/service_laundry_1784018255066.jpg";
+import serviceCarpet from "../assets/images/service_carpet_cleaning_1784018267317.jpg";
+import serviceHouse from "../assets/images/service_house_cleaning_1784018279838.jpg";
+
 interface LandingPageProps {
   settings: AppSettings;
   services: Service[];
@@ -111,17 +117,17 @@ export default function LandingPage({
     switch (serviceId) {
       case "s-laundry":
       case "s-duvet":
-        return "/src/assets/images/service_laundry_1784018255066.jpg";
+        return serviceLaundry;
       case "s-carpet":
       case "s-sofa":
-        return "/src/assets/images/service_carpet_cleaning_1784018267317.jpg";
+        return serviceCarpet;
       case "s-house":
-        return "/src/assets/images/service_house_cleaning_1784018279838.jpg";
+        return serviceHouse;
       case "s-car":
       case "s-wardrobe":
       case "s-errands":
       default:
-        return "/src/assets/images/mary_chandelier_cleaning_1784018216205.jpg";
+        return maryChandelier;
     }
   };
 
@@ -255,7 +261,7 @@ export default function LandingPage({
         {/* Small floating realistic photo cards representing services */}
         <div className="hidden lg:block absolute left-12 xl:left-24 top-1/3 bg-white/10 backdrop-blur-md rounded-2xl p-3 border border-white/20 shadow-2xl animate-bounce duration-1000 max-w-[130px]">
           <img 
-            src="/src/assets/images/service_laundry_1784018255066.jpg" 
+            src={serviceLaundry} 
             alt="Laundering process" 
             className="w-16 h-12 rounded-xl object-cover mb-2 border border-white/20 mx-auto"
             referrerPolicy="no-referrer"
@@ -264,7 +270,7 @@ export default function LandingPage({
         </div>
         <div className="hidden lg:block absolute right-12 xl:right-24 top-1/4 bg-white/10 backdrop-blur-md rounded-2xl p-3 border border-white/20 shadow-2xl animate-bounce duration-[3s] max-w-[130px]">
           <img 
-            src="/src/assets/images/service_house_cleaning_1784018279838.jpg" 
+            src={serviceHouse} 
             alt="House interior cleaning" 
             className="w-16 h-12 rounded-xl object-cover mb-2 border border-white/20 mx-auto"
             referrerPolicy="no-referrer"
@@ -273,7 +279,7 @@ export default function LandingPage({
         </div>
         <div className="hidden lg:block absolute left-20 xl:left-36 bottom-1/4 bg-white/10 backdrop-blur-md rounded-2xl p-3 border border-white/20 shadow-2xl animate-bounce duration-[4s] max-w-[130px]">
           <img 
-            src="/src/assets/images/service_carpet_cleaning_1784018267317.jpg" 
+            src={serviceCarpet} 
             alt="Carpet wash" 
             className="w-16 h-12 rounded-xl object-cover mb-2 border border-white/20 mx-auto"
             referrerPolicy="no-referrer"
@@ -282,7 +288,7 @@ export default function LandingPage({
         </div>
         <div className="hidden lg:block absolute right-20 xl:right-36 bottom-1/3 bg-white/10 backdrop-blur-md rounded-2xl p-3 border border-white/20 shadow-2xl animate-bounce duration-[2.5s] max-w-[130px]">
           <img 
-            src="/src/assets/images/mary_chandelier_cleaning_1784018216205.jpg" 
+            src={maryChandelier} 
             alt="Mary cleaning chandelier" 
             className="w-16 h-12 rounded-xl object-cover mb-2 border border-white/20 mx-auto"
             referrerPolicy="no-referrer"
@@ -557,7 +563,7 @@ export default function LandingPage({
               {/* Main styled profile avatar representation */}
               <div className="relative w-64 h-64 rounded-full border-4 border-white overflow-hidden shadow-inner bg-purple-deep flex items-center justify-center">
                 <img 
-                  src="/src/assets/images/mary_professional_portrait_1784018229653.jpg" 
+                  src={settings.ownerImage || maryPortrait} 
                   alt="Mary Anthony Portrait" 
                   className="w-full h-full object-cover"
                   referrerPolicy="no-referrer"
@@ -615,7 +621,7 @@ export default function LandingPage({
                 <span className="text-amber-300 font-bold text-[10px] uppercase tracking-wider block mb-2">📸 Mary in Action</span>
                 <div className="rounded-xl overflow-hidden h-36">
                   <img 
-                    src="/src/assets/images/mary_chandelier_cleaning_1784018216205.jpg" 
+                    src={maryChandelier} 
                     alt="Mary Anthony cleaning chandelier in Nanyuki" 
                     className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
                     referrerPolicy="no-referrer"
@@ -776,6 +782,78 @@ export default function LandingPage({
                     value={bNotes}
                     onChange={e => setBNotes(e.target.value)}
                   />
+                </div>
+
+                {/* Real-time pre-filled WhatsApp Message Generator / Preview */}
+                <div className="bg-emerald-50 border border-emerald-200 rounded-3xl overflow-hidden shadow-sm space-y-0">
+                  <div className="bg-emerald-600 px-4 py-3.5 text-white flex items-center justify-between">
+                    <div className="flex items-center gap-2">
+                      <div className="w-2 h-2 rounded-full bg-green-300 animate-ping"></div>
+                      <span className="text-xs font-black uppercase tracking-wider">Live WhatsApp Message Draft</span>
+                    </div>
+                    <span className="bg-emerald-700 text-emerald-100 text-[10px] font-black px-2.5 py-1 rounded-full uppercase tracking-wider">
+                      Auto-Prefilled
+                    </span>
+                  </div>
+                  <div className="p-4 bg-[#ece5dd] relative">
+                    <div className="absolute inset-0 opacity-[0.05] bg-[radial-gradient(#000_1.5px,transparent_1.5px)] [background-size:16px_16px] pointer-events-none"></div>
+                    
+                    <div className="relative bg-white text-gray-800 text-xs rounded-2xl rounded-tl-none p-4 shadow-md border border-gray-200/40 max-w-[95%] space-y-2 font-sans mx-auto sm:ml-0">
+                      <div className="text-[10px] text-emerald-600 font-bold flex items-center gap-1">
+                        <span>Mary Anthony</span>
+                        <span className="text-gray-400 font-normal">● Online</span>
+                      </div>
+                      <div className="whitespace-pre-line text-gray-700 leading-relaxed font-mono bg-emerald-50/70 p-3 rounded-xl border border-emerald-100/60 text-[11px]">
+                        {`Hi Mary! Booking request from Sparkle & Shine Website:
+
+👤 Name: ${bName || "[Enter your name]"}
+📞 Phone: ${bPhone || "[Enter WhatsApp phone]"}
+${bEmail ? `📧 Email: ${bEmail}\n` : ""}✨ Service: ${services.find(s => s.id === bServiceId)?.name || "[Select service below]"}
+📅 Date: ${bDate ? formatDate(bDate) : "[Choose preferred date]"}
+⏰ Preferred Time: ${bTime || "[Choose preferred hour]"}
+📍 Location: ${bLocation || "[Enter Nanyuki address]"}
+${bNotes ? `📝 Notes: ${bNotes}\n` : ""}
+🤝 I have read and accepted your Terms of Service. Please confirm my appointment!`}
+                      </div>
+                      <div className="text-right text-[9px] text-gray-400 mt-1 font-mono">
+                        {new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+                      </div>
+                    </div>
+                  </div>
+                  <div className="bg-white px-4 py-3.5 border-t border-emerald-100 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-gray-500">
+                    <span className="text-[11px] leading-snug">
+                      Your inputs above are compiled dynamically into this message.
+                    </span>
+                    <button
+                      type="button"
+                      onClick={() => {
+                        if (!bName || !bPhone || !bServiceId || !bDate) {
+                          alert("Please fill in Name, Phone Number, Service, and Date to pre-fill your request first!");
+                          return;
+                        }
+                        const matchedSrv = services.find(s => s.id === bServiceId);
+                        const sName = matchedSrv ? matchedSrv.name : "Custom Cleaning";
+                        let waMsg = `Hi Mary! Booking request from Sparkle & Shine Website:\n\n`;
+                        waMsg += `👤 Name: ${bName}\n`;
+                        waMsg += `📞 Phone: ${bPhone}\n`;
+                        if (bEmail) waMsg += `📧 Email: ${bEmail}\n`;
+                        waMsg += `✨ Service: ${sName}\n`;
+                        waMsg += `📅 Date: ${formatDate(bDate)}\n`;
+                        waMsg += `⏰ Preferred Time: ${bTime || "Not Specified"}\n`;
+                        waMsg += `📍 Location: ${bLocation}\n`;
+                        if (bNotes) waMsg += `📝 Notes: ${bNotes}\n\n`;
+                        waMsg += `🤝 I have read and accepted your Terms of Service. Please confirm my appointment!`;
+                        
+                        const encodedMsg = encodeURIComponent(waMsg);
+                        const waUrl = `https://wa.me/${settings.whatsappNumber}?text=${encodedMsg}`;
+                        window.open(waUrl, "_blank");
+                      }}
+                      className="bg-emerald-600 hover:bg-emerald-700 text-white font-black text-xs px-4 py-2.5 rounded-xl transition shadow flex items-center gap-1.5 cursor-pointer"
+                    >
+                      <Phone size={14} />
+                      <span>Send via WhatsApp Directly</span>
+                    </button>
+                  </div>
                 </div>
 
                 {/* Contract/TOS Acceptance Checkbox */}

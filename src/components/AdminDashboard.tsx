@@ -3,13 +3,13 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Service, Booking, Review, AppSettings, Lead } from "../types";
 import TemplateExporter from "./TemplateExporter";
 import { 
   Calendar, DollarSign, Layers, Settings, Star, User, Plus, Trash2, Edit3, 
   Save, CheckCircle, Clock, XCircle, ArrowRight, Phone, MapPin, Sparkles, 
-  HelpCircle, Check, Award, Eye, Code, Users
+  HelpCircle, Check, Award, Eye, Code, Users, Upload
 } from "lucide-react";
 
 interface AdminDashboardProps {
@@ -47,6 +47,32 @@ export default function AdminDashboard({
   // States for editing Settings
   const [settingsForm, setSettingsForm] = useState<AppSettings>({ ...settings });
   const [settingsSaved, setSettingsSaved] = useState(false);
+
+  // Profile image upload preview state
+  const [previewImage, setPreviewImage] = useState<string | null>(null);
+
+  useEffect(() => {
+    setSettingsForm({ ...settings });
+    setPreviewImage(null);
+  }, [settings]);
+
+  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        const base64String = reader.result as string;
+        setPreviewImage(base64String);
+        setSettingsForm(prev => ({ ...prev, ownerImage: base64String }));
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
+  const handleRemoveImage = () => {
+    setPreviewImage(null);
+    setSettingsForm(prev => ({ ...prev, ownerImage: "" }));
+  };
 
   // Statistics calculations
   const totalApprovedBookings = bookings.filter(b => b.status === "approved").length;
@@ -149,6 +175,7 @@ export default function AdminDashboard({
     e.preventDefault();
     setSettings(settingsForm);
     setSettingsSaved(true);
+    setPreviewImage(null);
     setTimeout(() => setSettingsSaved(false), 3000);
   };
 
@@ -802,6 +829,68 @@ export default function AdminDashboard({
                 <span>Brand settings successfully updated and saved in local storage! Refresh to see final results.</span>
               </div>
             )}
+
+            {/* Founder Profile Photo Upload & FileReader Preview */}
+            <div className="p-6 bg-purple-50/30 rounded-3xl border border-purple-100 space-y-4">
+              <div className="flex flex-col sm:flex-row items-center gap-6">
+                <div className="relative w-32 h-32 rounded-full border-4 border-white shadow-lg overflow-hidden bg-purple-deep flex items-center justify-center shrink-0 group">
+                  {previewImage || settingsForm.ownerImage ? (
+                    <img 
+                      src={previewImage || settingsForm.ownerImage} 
+                      alt="Mary's profile preview" 
+                      className="w-full h-full object-cover"
+                    />
+                  ) : (
+                    <div className="text-center p-3 text-white flex flex-col items-center justify-center space-y-1">
+                      <User size={28} className="opacity-80" />
+                      <span className="text-[10px] font-bold uppercase tracking-wider block">Default Photo</span>
+                    </div>
+                  )}
+                  <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                    <span className="text-[9px] text-white font-bold uppercase tracking-widest">Active</span>
+                  </div>
+                </div>
+
+                <div className="space-y-2 text-center sm:text-left flex-1">
+                  <h3 className="font-serif text-base font-bold text-purple-deep">Mary's Profile Picture</h3>
+                  <p className="text-xs text-gray-500 leading-relaxed max-w-md">
+                    Upload a high-quality professional portrait. It will update Mary's profile avatar on the public page immediately once saved.
+                  </p>
+                  
+                  <div className="flex flex-wrap justify-center sm:justify-start gap-2 pt-1">
+                    <input
+                      type="file"
+                      accept="image/*"
+                      id="owner-profile-image-upload"
+                      className="hidden"
+                      onChange={handleImageChange}
+                    />
+                    <label
+                      htmlFor="owner-profile-image-upload"
+                      className="bg-purple-deep hover:bg-purple-mid text-white font-bold text-xs px-4 py-2.5 rounded-xl cursor-pointer transition shadow-sm inline-flex items-center gap-1.5"
+                    >
+                      <Upload size={14} />
+                      <span>Choose New Image</span>
+                    </label>
+                    {(settingsForm.ownerImage || previewImage) && (
+                      <button
+                        type="button"
+                        onClick={handleRemoveImage}
+                        className="bg-white border border-red-200 hover:bg-red-50 text-red-600 font-bold text-xs px-4 py-2.5 rounded-xl transition cursor-pointer"
+                      >
+                        Reset to Default
+                      </button>
+                    )}
+                  </div>
+
+                  {previewImage && (
+                    <div className="text-[10px] text-amber-700 bg-amber-50 px-3 py-1.5 rounded-xl border border-amber-100 inline-block animate-pulse font-medium">
+                      ⚠️ Preview mode: Remember to click "Save All Changes" below to apply!
+                    </div>
+                  )}
+                </div>
+              </div>
+            </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>

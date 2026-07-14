@@ -1,0 +1,52 @@
+{
+  "appSettings": {
+    "brandName": "Sparkle & Shine Services",
+    "tagline": "We Clean, Organize & Take Care — So You Don't Have To!",
+    "whatsappNumber": "254743137081",
+    "locationText": "Nanyuki Town, Laikipia County & Surroundings",
+    "ownerName": "Mary Anthony",
+    "aboutText": "I choose to carry purpose. I am building this cleaning business with tireless hands but an unshakable vision—to break generational cycles, create financial freedom, and show my daughter that our story doesn't end where it began. Every small step matters, and when you trust Sparkle & Shine, you are supporting a local woman-led business built on absolute excellence.",
+    "aboutQuote": "They say the firstborn carries the weight of the family. I choose to carry purpose instead. I'm building my cleaning business with tired hands but an unshakable vision—to break generational cycles, create financial freedom, and show my daughter that our story doesn't end where it began. Every small step matters. 🏡✨❤️",
+    "contractTerms": "By booking a service, you agree to the following Terms of Service:\n1. Access to Property: The client will provide Sparkle & Shine team members with full access to the cleaning site at the scheduled time.\n2. Cancellation Policy: Any cancellation or rescheduling must be requested at least 12 hours prior to the booked time.\n3. Payment Terms: Payment is due immediately upon completion of the service via Cash, M-Pesa, or pre-approved bank transfer.\n4. Liability: While we take maximum care of your garments and furniture, any delicate items or pre-existing damages should be pointed out to our staff before cleaning starts.",
+    "incentiveTitle": "CLAIM YOUR FREE CONSULTATION & 10% OFF!",
+    "incentiveDescription": "First-time client in Nanyuki? Enter your name and contact details below, and we'll send you a voucher code for 10% OFF your first service or a free home laundry estimate!"
+  },
+  "services": [
+    {
+      "id": "s-laundry",
+      "name": "Laundry & Folding",
+      "category": "laundry",
+      "icon": "Shirt",
+      "priceType": "starting",
+      "price": 500,
+      "priceUnit": "small basket",
+      "description": "Your clothes handled with extreme care: wash, dry, iron, fold, and steam fresh. Pickup and delivery available.",
+      "benefits": ["Thorough stain treatment", "Fabric softener and fresh scent", "Hand or machine wash options", "Neatly folded and stacked"],
+      "isFeatured": true
+    },
+    {
+      "id": "s-carpet",
+      "name": "Carpet & Rug Cleaning",
+      "category": "cleaning",
+      "icon": "Layers",
+      "priceType": "per_sq_meter",
+      "price": 20,
+      "priceUnit": "sq. meter",
+      "description": "Deep extract, sanitization, and dust removal. Bring life and vibrant colors back to your floor rugs and carpets.",
+      "benefits": ["Fair pricing (KSh 20/sqm)", "Removes deep dirt & allergens", "Eliminates odor and bacteria", "Dries rapidly within 24 hours"],
+      "isFeatured": true
+    },
+    {
+      "id": "s-house",
+      "name": "House General & Deep Clean",
+      "category": "cleaning",
+      "icon": "Home",
+      "priceType": "starting",
+      "price": 1500,
+      "priceUnit": "session",
+      "description": "Top-to-bottom domestic cleaning. Dusting, vacuuming, disinfection, polishing surfaces, bathroom and kitchen deep scrub.",
+      "benefits": ["Spotless kitchen appliances", "Disinfected toilets & showers", "Mopped floors and sparkling glass", "Flexible weekend or daily slots"],
+      "isFeatured": true
+    }
+  ]
+}
